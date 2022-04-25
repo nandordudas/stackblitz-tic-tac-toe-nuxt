@@ -12,16 +12,18 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
   ],
-  experimental: {
-    reactivityTransform: true,
-  },
   unocss: {
     transformers: [transformerVariantGroup()],
     attributify: true,
     preflight: true,
-    // safelist: [
-    //   'grid-cols-[repeat(3,1fr)]',
-    //   'grid-cols-[repeat(5,1fr)]',
-    // ],
+    safelist: [
+      'grayscale',
+    ],
+    icons: {
+      scale: 1.2,
+    },
+    shortcuts: [
+      [/^btn-(.*)$/, ([, c]) => `bg-${c}-400 text-${c}-100 py-2 px-4 rounded-lg`],
+    ],
   },
 })
