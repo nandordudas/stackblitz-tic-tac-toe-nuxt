@@ -5,16 +5,19 @@ export default defineNuxtConfig({
   // Disable @builtin vscode.typescript-language-features, because of volar.
   typescript: {
     shim: false,
+    strict: true,
   },
   modules: [
-    '@vueuse/nuxt',
-    '@unocss/nuxt',
-    '@pinia/nuxt',
     '@nuxtjs/color-mode',
+    '@pinia/nuxt',
+    '@unocss/nuxt',
+    '@vueuse/nuxt',
   ],
+  colorMode: {
+    classSuffix: '',
+  },
   unocss: {
     transformers: [transformerVariantGroup()],
-    attributify: true,
     preflight: true,
     safelist: [
       'grayscale',

@@ -1,27 +1,24 @@
 <script setup lang="ts">
+const appTitle = 'Tic Tac Toe'
+
 useHead({
-  title: 'Tic Tac Toe',
+  htmlAttrs: {
+    lang: 'en',
+  },
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+  ],
+  bodyAttrs: {
+    class: 'antialiased text-slate-500 bg-white dark:(text-slate-400 bg-slate-900)',
+  },
+  titleTemplate: pageTitle => `${appTitle} - ${pageTitle}`,
 })
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <div>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
-
-<style>
-html,
-body,
-#__nuxt {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* TODO: use tailwind instead */
-html.dark-mode {
-  background: #222;
-  color: white;
-}
-</style>

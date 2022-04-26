@@ -1,19 +1,15 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/typescript-node/.devcontainer/base.Dockerfile
-
-# [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon): 16, 14, 12, 16-bullseye, 14-bullseye, 12-bullseye, 16-buster, 14-buster, 12-buster
-ARG VARIANT="16-bullseye"
+# This will be rewrited by docker-compose during build.
+ARG VARIANT=16-bullseye
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# Enable unattended installations.
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
 
-# [Optional] Uncomment if you want to install an additional version of node using nvm
-# ARG EXTRA_NODE_VERSION=10
-# RUN su node -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION}"
+ARG USER=node
+USER ${USER}
 
-ARG USER="node"
-# Set default pnpm store to the user's home directory.
-RUN su node -c "npm config set store-dir /home/${USER}/.pnpm-store"
+# Set default pnpm storage to home directory.
+RUN npm config set store-dir /home/${USER}/.pnpm-store
 # Install global dependencies.
-RUN su node -c "npm install -g @antfu/ni eslint pnpm npm@latest"
+RUN npm install -g @antfu/ni pnpm taze

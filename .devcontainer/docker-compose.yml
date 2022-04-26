@@ -6,10 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        # Update 'VARIANT' to pick a Node version: 16, 14, 12.
-        # Append -bullseye or -buster to pin to an OS version.
-        # Use -bullseye variants on local on arm64/Apple Silicon.
+        # [Choice] Node.js version (use -bullseye variants on local arm64/Apple Silicon):
+        # 18, 16, 14, 18-bullseye, 16-bullseye, 14-bullseye, 18-buster, 16-buster, 14-buster
         VARIANT: 16
     volumes:
       - ..:/workspace:cached
+
+    # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
